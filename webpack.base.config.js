@@ -7,17 +7,9 @@ module.exports = {
     performance: {
         hints: false
     },
-    mode: "production",
     output: {
         path: path.resolve(__dirname + '/dist'),
         filename: 'bundle.js'
-    },
-    devServer: {
-        compress: true,
-        port: 8081,
-        hot: true,
-        open: true,
-        static: path.resolve(__dirname, 'public')
     },
     resolve: {
         extensions: ['.js', '.vue', '.json'],
