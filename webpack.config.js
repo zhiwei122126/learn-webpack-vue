@@ -4,6 +4,9 @@ const { VueLoaderPlugin } = require('vue-loader')
 
 module.exports = {
     entry: './src/main.js',
+    performance: {
+        hints: false
+    },
     mode: "production",
     output: {
         path: path.resolve(__dirname + '/dist'),
@@ -11,10 +14,16 @@ module.exports = {
     },
     devServer: {
         compress: true,
-        port: 8090,
+        port: 8081,
         hot: true,
         open: true,
         static: path.resolve(__dirname, 'public')
+    },
+    resolve: {
+        extensions: ['.js', '.vue', '.json'],
+        alias: {
+          '@': path.resolve(__dirname, 'src'),
+        }
     },
     module:{
         rules: [
@@ -27,6 +36,12 @@ module.exports = {
                 test: /\.css$/,
                 use: ['vue-style-loader', 'css-loader'],
             },
+            {
+                // *.js
+                test: /\.js$/,
+                exclude: /node_modules/, // 不编译node_modules下的文件
+                loader: 'babel-loader',
+              },
         ]
     },
     plugins: [
